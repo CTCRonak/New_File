@@ -1,0 +1,8 @@
+import pickle
+
+# Specify the absolute path to the file
+file_path = "C:\\Users\\Hp\\PycharmProjects\\Recommendation_System\\venv\\similarity.pkl"
+
+# Load the file
+with open(file_path, 'rb') as file:
+    similarity = pickle.load(file)
