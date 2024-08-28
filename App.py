@@ -41,8 +41,8 @@ def recommend(movie):
         return Recommended_Movies, Recommended_Movies_posters
 
 # Define the paths using pathlib
-similarity_path = Path(r"C:\\Users\\Hp\\PycharmProjects\\Recommendation_System\\venv\\similarity.pkl")
-movies_list_path = Path(r"C:\\Users\\Hp\\PycharmProjects\\Recommendation_System\\venv\\Movie_list.pkl")
+similarity_path = Path("C:/Users/Hp/PycharmProjects/Recommendation_System/venv/similarity.pkl")
+movies_list_path = Path("C:/Users/Hp/PycharmProjects/Recommendation_System/venv/Movie_list.pkl")
 
 # Print current working directory (for debugging purposes)
 st.write(f"Current working directory: {os.getcwd()}")
