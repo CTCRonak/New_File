@@ -2,9 +2,10 @@ import streamlit as st
 import pickle
 import pandas as pd
 import requests
+from pathlib import Path
 
 def fetch_poster(movie_id):
-    response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US'.format(movie_id))
+    response = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US')
     if response.status_code == 200:
         data = response.json()
         poster_path = data.get('poster_path')
@@ -14,7 +15,7 @@ def fetch_poster(movie_id):
 
 def recommend(movie):
     if movie not in movies['title'].values:
-        print(f"The movie '{movie}' is not found in the dataset.")
+        st.write(f"The movie '{movie}' is not found in the dataset.")
         return [], []
     else:
         movie_index = movies[movies['title'] == movie].index[0]
@@ -36,11 +37,16 @@ def recommend(movie):
 
         return Recommended_Movies, Recommended_Movies_posters
 
-movies_list = pickle.load(open('Movie_list.pkl', 'rb'))
-movies = pd.DataFrame(movies_list)
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+# Define the path using pathlib
+similarity_path = Path('C:\\Users\\Hp\\PycharmProjects\\Recommendation_System\\venv\\similarity.pkl")
+movies_list_path = Path("C:\\Users\\Hp\\PycharmProjects\\Recommendation_System\\venv\similarity.pkl")
 
-st.title( 'Movie Recommender System (Ravi) ')
+# Load the files
+movies_list = pickle.load(movies_list_path.open('rb'))
+movies = pd.DataFrame(movies_list)
+similarity = pickle.load(similarity_path.open('rb'))
+
+st.title('Movie Recommender System (Ravi)')
 
 Selected_Movie_Name = st.selectbox(
     "Select a movie:",
@@ -69,4 +75,3 @@ if st.button('Recommend'):
     with col5:
         st.text(names[4])
         st.image(posters[4])
-
