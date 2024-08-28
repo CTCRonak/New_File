@@ -38,7 +38,7 @@ def recommend(movie):
         return Recommended_Movies, Recommended_Movies_posters
 
 # Define the path using pathlib
-similarity_path = Path('C:\\Users\\Hp\\PycharmProjects\\Recommendation_System\\venv\\similarity.pkl")
+similarity_path = Path("C:\\Users\\Hp\\PycharmProjects\\Recommendation_System\\venv\\similarity.pkl")
 movies_list_path = Path("C:\\Users\\Hp\\PycharmProjects\\Recommendation_System\\venv\similarity.pkl")
 
 # Load the files
